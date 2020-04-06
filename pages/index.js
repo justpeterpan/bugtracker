@@ -30,12 +30,6 @@ const Tab = ({ children }) => {
   return <Button onClick={onClick}>{children}</Button>;
 };
 
-const Search = styled.input`
-  grid-column-start: span 2;
-  border: 2px dashed #3d3d3d;
-  height: 30px;
-`;
-
 const Panel = ({ children }) => {
   const isActive = usePanelState();
 
@@ -49,15 +43,6 @@ const PanelGrid = styled.div`
 `;
 
 export default function IndexPage() {
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const [searchResults, setSearchResults] = React.useState([]);
-  const handleChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  // React.useEffect(() => {
-  //   const results = Bugs.filter(bug )
-  // })
   return (
     <Tabs>
       <GlobalStyle />
