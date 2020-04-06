@@ -13,15 +13,14 @@ const GlobalStyle = createGlobalStyle`
 const StyledTabs = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr auto;
   gap: 10px;
 `;
 
 const Button = styled.button`
-  color: palevioletred;
   font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid palevioletred;
+  padding: 10px 0px;
+  border: 2px solid #3d3d3d;
   border-radius: 3px;
 `;
 
@@ -31,10 +30,16 @@ const Tab = ({ children }) => {
   return <Button onClick={onClick}>{children}</Button>;
 };
 
+const Search = styled.input`
+  grid-column-start: span 2;
+  border: 2px dashed #3d3d3d;
+  height: 30px;
+`;
+
 const Panel = ({ children }) => {
   const isActive = usePanelState();
 
-  return isActive ? <p>{children}</p> : null;
+  return isActive ? <span>{children}</span> : null;
 };
 
 const PanelGrid = styled.div`
@@ -44,6 +49,15 @@ const PanelGrid = styled.div`
 `;
 
 export default function IndexPage() {
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const [searchResults, setSearchResults] = React.useState([]);
+  const handleChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  // React.useEffect(() => {
+  //   const results = Bugs.filter(bug )
+  // })
   return (
     <Tabs>
       <GlobalStyle />
@@ -51,7 +65,6 @@ export default function IndexPage() {
         <Tab>Fish</Tab>
         <Tab>Bugs</Tab>
       </StyledTabs>
-
       <Panel>
         <PanelGrid>
           <Fish />
