@@ -1,6 +1,7 @@
 import { Tabs, useTabState, usePanelState } from "@bumaga/tabs";
-import Fish from "../components/fish";
-import Bugs from "../components/bugs";
+import bugs from "../bugs.json";
+import fish from "../fish.json";
+import Animals from "../components/animals";
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 
@@ -36,11 +37,11 @@ const Panel = ({ children }) => {
   return isActive ? <span>{children}</span> : null;
 };
 
-const PanelGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-`;
+// const PanelGrid = styled.div`
+//   display: grid;
+//   grid-template-columns: repeat(2, 1fr);
+//   gap: 10px;
+// `;
 
 export default function IndexPage() {
   return (
@@ -50,15 +51,13 @@ export default function IndexPage() {
         <Tab>Fish</Tab>
         <Tab>Bugs</Tab>
       </StyledTabs>
+
       <Panel>
-        <PanelGrid>
-          <Fish />
-        </PanelGrid>
+        <Animals type={fish} />
       </Panel>
+
       <Panel>
-        <PanelGrid>
-          <Bugs />
-        </PanelGrid>
+        <Animals type={bugs} />
       </Panel>
     </Tabs>
   );
