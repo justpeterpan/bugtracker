@@ -66,7 +66,7 @@ const Animal = ({ type }) => {
   };
   React.useEffect(() => {
     const results = animals.filter((animal) =>
-      animal.name.includes(searchTerm)
+      animal.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setSearchResults(results);
   }, [searchTerm]);
