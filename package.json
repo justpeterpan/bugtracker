@@ -5,8 +5,9 @@
   "main": "index.js",
   "dependencies": {
     "@bumaga/tabs": "^0.2.0",
-    "next": "^9.3.4",
-    "next-on-netlify": "^1.0.1",
+    "@kiwicom/orbit-components": "^0.84.2",
+    "next": "^9.3.6",
+    "next-on-netlify": "^1.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "styled-components": "^5.0.1"

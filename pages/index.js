@@ -4,6 +4,7 @@ import fish from "../fish.json";
 import Animals from "../components/animals";
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
+import Button from "@kiwicom/orbit-components/lib/Button";
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -18,12 +19,13 @@ const StyledTabs = styled.div`
   gap: 10px;
 `;
 
-const Button = styled.button`
-  font-size: 1em;
-  padding: 10px 0px;
-  border: 2px solid #3d3d3d;
-  border-radius: 3px;
-`;
+// const Button = styled.button`
+//   font-size: 1em;
+//   padding: 10px 0px;
+//   border: 2px solid #3d3d3d;
+//   border-radius: 3px;
+//   background-color: white;
+// `;
 
 const Tab = ({ children }) => {
   const { onClick } = useTabState();

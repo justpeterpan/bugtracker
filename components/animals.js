@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import getCurrentMonth from "../utils/date";
+import Heading from "@kiwicom/orbit-components/lib/Heading";
+import InputField from "@kiwicom/orbit-components/lib/InputField";
 
 const Page = styled.div`
   display: grid;
@@ -9,14 +11,14 @@ const Page = styled.div`
 
 const Card = styled.div`
   display: grid;
-  grid-template-rows: 220px auto;
-  border-radius: 4px;
-  border: 1px dotted #3d3d3d;
+  grid-template-rows: 180px auto;
+  border: 1px solid #eff2f5;
+  border-radius: 3px;
 `;
 
 const Animals = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(174px, 1fr));
   gap: 10px;
 `;
 
@@ -24,22 +26,20 @@ const Header = styled.header`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 120px auto;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
 `;
 
 const Image = styled.img`
   justify-self: center;
 `;
 
-const Name = styled.h2`
+const Name = styled.span`
   padding-left: 5px;
   align-self: start;
 `;
 
 const Infos = styled.div`
+  border-top: 1px solid #eff2f5;
   padding-top: 12px;
-  background-color: #e1ecc6;
 `;
 
 const List = styled.ul`
@@ -48,12 +48,10 @@ const List = styled.ul`
 `;
 
 const ListItem = styled.li`
-  padding: 0px 0px 5px 5px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px 10px 10px;
   list-style: none;
-`;
-
-const SearchInput = styled.input`
-  height: 40px;
 `;
 
 const Animal = ({ type }) => {
@@ -75,7 +73,7 @@ const Animal = ({ type }) => {
 
   return (
     <Page>
-      <SearchInput
+      <InputField
         type="text"
         placeholder="Search"
         value={searchTerm}
@@ -87,15 +85,23 @@ const Animal = ({ type }) => {
           .map((item, i) => {
             return (
               <Card key={i}>
-                <Header>
+                <Header className='header'>
                   <Image src={item.imageLink} />
-                  <Name>{item.name}</Name>
+                  <Heading type="title2">
+                    <Name>{item.name}</Name>
+                  </Heading>
                 </Header>
                 <Infos>
                   <List>
-                    <ListItem>💰 {item.price} $</ListItem>
-                    <ListItem>📍 {item.location}</ListItem>
-                    <ListItem>⌚ {item.time}</ListItem>
+                    <ListItem>
+                      <span>💰</span> {item.price} $
+                    </ListItem>
+                    <ListItem>
+                      <span>📍</span> {item.location}
+                    </ListItem>
+                    <ListItem>
+                      <span>⌚</span> {item.time}
+                    </ListItem>
                   </List>
                 </Infos>
               </Card>
