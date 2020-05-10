@@ -6,6 +6,7 @@
   "dependencies": {
     "@bumaga/tabs": "^0.2.0",
     "@kiwicom/orbit-components": "^0.84.2",
+    "framer-motion": "^1.10.3",
     "next": "^9.3.6",
     "next-on-netlify": "^1.2.0",
     "react": "^16.13.1",
