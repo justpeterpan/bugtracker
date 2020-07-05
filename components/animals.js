@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import getCurrentMonth from "../utils/date";
+import useSpecies from "../utils/dataProvider";
 
 const Page = styled.div`
   display: grid;
@@ -16,7 +17,7 @@ const Card = styled.div`
 
 const Animals = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(192px, 1fr));
   gap: 10px;
 `;
 
@@ -24,8 +25,6 @@ const Header = styled.header`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 120px auto;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
 `;
 
 const Image = styled.img`
@@ -39,7 +38,6 @@ const Name = styled.h2`
 
 const Infos = styled.div`
   padding-top: 12px;
-  background-color: #e1ecc6;
 `;
 
 const List = styled.ul`
@@ -52,50 +50,29 @@ const ListItem = styled.li`
   list-style: none;
 `;
 
-const SearchInput = styled.input`
-  height: 40px;
-`;
-
 const Animal = ({ type }) => {
-  const animals = type;
-
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const [searchResults, setSearchResults] = React.useState([]);
-  const handleChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-  React.useEffect(() => {
-    const results = animals.filter((animal) =>
-      animal.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setSearchResults(results);
-  }, [searchTerm]);
-
+  const animals = useSpecies(`${type}`);
   const currentMonth = getCurrentMonth();
 
   return (
     <Page>
-      <SearchInput
-        type="text"
-        placeholder="Search"
-        value={searchTerm}
-        onChange={handleChange}
-      />
       <Animals>
-        {searchResults
-          .filter((item) => item[currentMonth])
+        {animals
+          .filter((item) =>
+            item.availability["month-array-northern"].includes(currentMonth)
+          )
           .map((item, i) => {
             return (
               <Card key={i}>
                 <Header>
-                  <Image src={item.imageLink} />
-                  <Name>{item.name}</Name>
+                  <Image src={item["icon_uri"]} />
+                  <Name>{item.name["name-EUen"]}</Name>
                 </Header>
                 <Infos>
                   <List>
                     <ListItem>💰 {item.price} $</ListItem>
-                    <ListItem>📍 {item.location}</ListItem>
-                    <ListItem>⌚ {item.time}</ListItem>
+                    <ListItem>📍 {item.availability.location}</ListItem>
+                    <ListItem>⌚ {item.availability.time}</ListItem>
                   </List>
                 </Infos>
               </Card>

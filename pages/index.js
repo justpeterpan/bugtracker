@@ -1,6 +1,4 @@
 import { Tabs, useTabState, usePanelState } from "@bumaga/tabs";
-import bugs from "../bugs.json";
-import fish from "../fish.json";
 import Animals from "../components/animals";
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
@@ -23,17 +21,16 @@ const Button = styled.button`
   padding: 10px 0px;
   border: 2px solid #3d3d3d;
   border-radius: 3px;
+  background-color: white;
 `;
 
 const Tab = ({ children }) => {
   const { onClick } = useTabState();
-
   return <Button onClick={onClick}>{children}</Button>;
 };
 
 const Panel = ({ children }) => {
   const isActive = usePanelState();
-
   return isActive ? <span>{children}</span> : null;
 };
 
@@ -47,11 +44,11 @@ export default function IndexPage() {
       </StyledTabs>
 
       <Panel>
-        <Animals type={fish} />
+        <Animals type="fish" />
       </Panel>
 
       <Panel>
-        <Animals type={bugs} />
+        <Animals type="bugs" />
       </Panel>
     </Tabs>
   );
